@@ -14,3 +14,21 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.main-contaniner{
+  padding-top: 100px;
+}
+
+.nav-link, .navbar-brand{
+  font-size: 24px;
+}
+
+.card img {
+  height: 200px;
+}
+
+@media only screen and (max-width: 1400px) {
+  .card img {
+    height: auto;
+  }
+}
