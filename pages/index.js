@@ -1,65 +1,53 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import {useState} from 'react'
+import {connect} from 'react-redux'
+import MainLayout from '../src/layouts/MainLayout'
+import {decrementCounter, incrementCounter} from '../src/redux/actions/counterActions'
 
-export default function Home() {
+const Home = (props) => {
+
+  console.log(props)
+  // let counter = 0
+
+  // const { value, dispatch } = props
+
+  // React hook
+  // const [counter, setCounter] = useState(0)
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <MainLayout>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+      {/* <h1>Counter: {counter}</h1> */}
+      {/* <button onClick={()=>setCounter(counter+1)}>+ Count up</button>&nbsp; */}
+      {/* <button onClick={()=>setCounter(counter-1)}>- Count down</button> */}
+      {/* <button onClick={()=>{counter++; console.log(counter)}}>+ Counter up</button> */}
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+      {/* <h1>Counter: {value}</h1>
+      <button onClick={()=>dispatch({type: 'INCREMENT_COUNTER'})}>+ Count up</button>&nbsp;
+      <button onClick={()=>dispatch({type: 'DECREMENT_COUNTER'})}>- Count down</button> */}
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+      <h1>Counter: {props.counter}</h1>
+      <button onClick={props.incrementCounter}>+ Count up</button>&nbsp;
+      <button onClick={props.decrementCounter}>- Count down</button>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
+    </MainLayout>
   )
 }
+
+// mapStateToProps
+// รับฟังก์ชันจาก store มาใช้งาน
+const mapStateToProps = state => ({
+  counter: state.counter.value
+})
+
+// mapDispatchToProps
+// ส่งค่าไปยัง store เป็น object
+const mapDispatchToProps = {
+  incrementCounter: incrementCounter,
+  decrementCounter: decrementCounter,
+}
+
+// export default Home
+// export default connect(state=>state.counter)(Home)
+export default connect(mapStateToProps,mapDispatchToProps)(Home)
+
+
