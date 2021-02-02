@@ -1,11 +1,13 @@
 {
+  "homepage": "./redux_nextjs/",
   "name": "redux-nextjs",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "build": "next build && next export",
+    "start": "next start",
+    "prod": "next export"
   },
   "dependencies": {
     "next": "10.0.6",

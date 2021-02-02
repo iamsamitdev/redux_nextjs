@@ -3,7 +3,7 @@ import ProductCard from '../productcard/ProductCard'
 
 const ProductList = (props) => {
 
-    const { products, handleBuy } = props
+    const { products, handleBuy, handleUpdate, handleDelete } = props
 
     // console.log(products)
 
@@ -15,7 +15,10 @@ const ProductList = (props) => {
                         <div className="col-md-3 mb-4" key={index}>
                             <ProductCard 
                                 product={item} 
-                                handleBuy={()=>{handleBuy(index)}}
+                                handleBuy={!handleBuy ? null : ()=>{handleBuy(index)}}
+                                handleUpdate={!handleUpdate ? null : ()=>{handleUpdate(index)}}
+                                handleDelete={!handleDelete ? null : ()=>{handleDelete(index)}}
+                                // handleBuy={()=>{handleBuy(index)}}
                             />
                         </div>
                     )

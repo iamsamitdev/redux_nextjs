@@ -1,9 +1,11 @@
+import Link from 'next/link'
 import {connect} from 'react-redux'
+
 const Navbar = (props) => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div className="container">
-            <a className="navbar-brand" href="#">NEXTSHOP</a>
+            <Link href="/"><a className="navbar-brand">NEXTSHOP</a></Link>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon" />
             </button>
@@ -11,10 +13,16 @@ const Navbar = (props) => {
             
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">HOME</a>
+                    <Link href="/" className="nav-link"><a className="nav-link" aria-current="page">หน้าหลัก</a></Link>
                 </li>
                 <li className="nav-item">
-                <a className="nav-link" href="#">MANAGE</a>
+                    <Link href="/manage"><a className="nav-link">จัดการร้าน</a></Link>
+                </li>
+                <li className="nav-item">
+                    <Link href="/about.html"><a className="nav-link">เกี่ยวกับเรา</a></Link>
+                </li>
+                <li className="nav-item">
+                    <Link href="/contact_us.html"><a className="nav-link">ติดต่อเรา</a></Link>
                 </li>
             </ul>
 
@@ -29,7 +37,7 @@ const Navbar = (props) => {
                     <a className="nav-link" href="#">LOGIN</a>
                 </li> */}
                 <li className="nav-item">
-                    <a className="nav-link" href="#">8 items (2,120.00 ฿THB)</a>
+                    <a className="nav-link" href="#">ตะกร้า <span className="badge rounded-pill bg-danger">{props.product.cartitems}</span> ชิ้น</a>
                 </li>
             </ul>
            
@@ -39,11 +47,8 @@ const Navbar = (props) => {
     )
 }
 
-// mapStateToProps
-// รับฟังก์ชันจาก store มาใช้งาน
 const mapStateToProps = state => ({
-    counter: state.counter.value
+    product: state.product
 })
-  
 
 export default connect(mapStateToProps)(Navbar)
